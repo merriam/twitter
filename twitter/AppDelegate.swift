@@ -69,6 +69,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         println("10.")
                         
                         // println("home timeline: \(response)")
+                        var tweets = Tweet.tweetsWithArray(response as [NSDictionary])
+                        
+                        for tweet in tweets {
+                            println("text: \(tweet.text), created: \(tweet.createdAt)")
+                        }
                     },
                     failure:  { (operation: AFHTTPRequestOperation!, error: NSError!) in
                         println("11.")
