@@ -108,6 +108,7 @@
 		48E9C66219E3566E00AD1C66 /* twitter */ = {
 			isa = PBXGroup;
 			children = (
+				4802D37D19E3991100DF6C8C /* twitter-Bridging-Header.h */,
 				4844E82519E8AB0C0021F8A1 /* Models */,
 				4802D38019E3999D00DF6C8C /* API */,
 				48E9C66519E3566E00AD1C66 /* AppDelegate.swift */,
@@ -115,7 +116,6 @@
 				48E9C66919E3566E00AD1C66 /* Main.storyboard */,
 				48E9C66C19E3566E00AD1C66 /* Images.xcassets */,
 				48E9C66E19E3566E00AD1C66 /* LaunchScreen.xib */,
-				4802D37D19E3991100DF6C8C /* twitter-Bridging-Header.h */,
 				48E9C66319E3566E00AD1C66 /* Supporting Files */,
 			);
 			path = twitter;

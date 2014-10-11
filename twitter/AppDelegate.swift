@@ -42,51 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String, annotation: AnyObject?) -> Bool {
-        println("5.")
-        TwitterClient.sharedInstance.fetchAccessTokenWithPath("oauth/access_token",
-            method:"POST",
-            requestToken: BDBOAuthToken(queryString: url.query),
-            success: { (accessToken:  BDBOAuthToken!) -> Void in
-                println("got the access token")
-                TwitterClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
-                println("6.")
-                TwitterClient.sharedInstance.GET("1.1/account/verify_credentials.json", parameters: nil,
-                    success: {  (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-                        println("8.")
-                        
-                        println("user: \(response)")
-                        var user = User(dictionary: response as NSDictionary)
-                        println("user: \(user.name)")
-                    },
-                    failure:  { (operation: AFHTTPRequestOperation!, error: NSError!) in
-                        println("9.")
-                        
-                        println("failed in operation")
-                })
-                
-                TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: nil,
-                    success: {  (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-                        println("10.")
-                        
-                        // println("home timeline: \(response)")
-                        var tweets = Tweet.tweetsWithArray(response as [NSDictionary])
-                        
-                        for tweet in tweets {
-                            println("text: \(tweet.text), created: \(tweet.createdAt)")
-                        }
-                    },
-                    failure:  { (operation: AFHTTPRequestOperation!, error: NSError!) in
-                        println("11.")
-                        
-                        println("failed in getting home timeline")
-                })
-            },
-            failure: { (error:  NSError!) -> Void in
-                println("error getting fetching token on return")
-            })
-        println("7.")
-
-        println("--------- Now get user name")
+        
+        // arrived here for oauth request
+        TwitterClient.sharedInstance.openUrl(url)
         return true
     }
 }
