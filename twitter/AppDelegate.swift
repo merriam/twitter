@@ -55,13 +55,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         println("8.")
                         
                         println("user: \(response)")
+                        var user = User(dictionary: response as NSDictionary)
+                        println("user: \(user.name)")
                     },
                     failure:  { (operation: AFHTTPRequestOperation!, error: NSError!) in
                         println("9.")
                         
-                        println("fzailed in operation")
+                        println("failed in operation")
                 })
-
+                
+                TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: nil,
+                    success: {  (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                        println("10.")
+                        
+                        // println("home timeline: \(response)")
+                    },
+                    failure:  { (operation: AFHTTPRequestOperation!, error: NSError!) in
+                        println("11.")
+                        
+                        println("failed in getting home timeline")
+                })
             },
             failure: { (error:  NSError!) -> Void in
                 println("error getting fetching token on return")
